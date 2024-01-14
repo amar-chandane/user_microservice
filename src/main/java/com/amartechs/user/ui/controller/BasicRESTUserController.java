@@ -2,6 +2,7 @@ package com.amartechs.user.ui.controller;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,10 @@ public class BasicRESTUserController {
 	@DeleteMapping // localhost:8080/users/ (Http method DELETE)
 	private String deleteUser() {
 		return "delete user is called";
-
+	}
+	
+	@GetMapping(path="/{userId}")       // http://localhost:8080/parameteriseduser/14444
+	private String getUser(@PathVariable String userId) {
+		return "This get user is called "+userId;
 	}
 }
