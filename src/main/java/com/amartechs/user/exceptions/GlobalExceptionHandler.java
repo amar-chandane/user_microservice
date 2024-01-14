@@ -13,37 +13,39 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-	@ExceptionHandler(value= {Exception.class})
-	public ResponseEntity<Object> handleanyException(Exception ex,WebRequest request){
-		String errorMessage=ex.getLocalizedMessage();
-		if(errorMessage==null) {
-			errorMessage=ex.toString();
+	@ExceptionHandler(value = { Exception.class })
+	public ResponseEntity<Object> handleanyException(Exception ex, WebRequest request) {
+		String errorMessage = ex.getLocalizedMessage();
+		if (errorMessage == null) {
+			errorMessage = ex.toString();
 		}
-		
-		return new ResponseEntity<>(new ErrorMessage(new Date(),errorMessage),new HttpHeaders(),HttpStatus.INTERNAL_SERVER_ERROR);
-		
+
+		return new ResponseEntity<>(new ErrorMessage(new Date(), errorMessage), new HttpHeaders(),
+				HttpStatus.INTERNAL_SERVER_ERROR);
+
 	}
-	
-	
-	@ExceptionHandler(value= {NullPointerException.class,ArrayIndexOutOfBoundsException.class})
-	public ResponseEntity<Object> handleanySpecificException(Exception ex,WebRequest request){
-		String errorMessage=ex.getLocalizedMessage();
-		if(errorMessage==null) {
-			errorMessage=ex.toString();
+
+	@ExceptionHandler(value = { NullPointerException.class, ArrayIndexOutOfBoundsException.class })
+	public ResponseEntity<Object> handleanySpecificException(Exception ex, WebRequest request) {
+		String errorMessage = ex.getLocalizedMessage();
+		if (errorMessage == null) {
+			errorMessage = ex.toString();
 		}
-		
-		return new ResponseEntity<>(new ErrorMessage(new Date(),errorMessage),new HttpHeaders(),HttpStatus.INTERNAL_SERVER_ERROR);
-		
+
+		return new ResponseEntity<>(new ErrorMessage(new Date(), errorMessage), new HttpHeaders(),
+				HttpStatus.INTERNAL_SERVER_ERROR);
+
 	}
-	
-	@ExceptionHandler(value= {UserBusinessException.class})
-	public ResponseEntity<Object> handleBusinessException(Exception ex,WebRequest request){
-		String errorMessage=ex.getLocalizedMessage();
-		if(errorMessage==null) {
-			errorMessage=ex.toString();
+
+	@ExceptionHandler(value = { UserBusinessException.class })
+	public ResponseEntity<Object> handleBusinessException(Exception ex, WebRequest request) {
+		String errorMessage = ex.getLocalizedMessage();
+		if (errorMessage == null) {
+			errorMessage = ex.toString();
 		}
-		
-		return new ResponseEntity<>(new ErrorMessage(new Date(),errorMessage),new HttpHeaders(),HttpStatus.INTERNAL_SERVER_ERROR);
-		
+
+		return new ResponseEntity<>(new ErrorMessage(new Date(), errorMessage), new HttpHeaders(),
+				HttpStatus.INTERNAL_SERVER_ERROR);
+
 	}
 }
